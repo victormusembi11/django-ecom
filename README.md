@@ -1,13 +1,46 @@
-# Puddle | Django
+# Ecommerce Project
 
-Learn how to build a simple online market place website using Django.
+This is a simple ecommerce project using Django.
 
-This repository is a part of a video tutorial I created for FreeCodeCamp
+## Virtual Environment
 
-My channel:
-[CodeWithStein](https://www.youtube.com/channel/UCfVoYvY8BfTDeF63JQmQJvg/?sub_confirmation=1)
+```bash
+python -m venv venv
+```
 
-## Author
-This repository and video is created by CodeWithStein. Check out my website for more information.
+```bash
+source venv/bin/activate
+```
 
-[Code With Stein - Website](https://codewithstein.com)
+## Environment Variables
+
+Create a .env file in the root directory and add the following variables:
+
+```bash
+SECRET_KEY=your_secret_key
+DEBUG=True
+```
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+## Database
+
+```python
+python manage.py migrate
+```
+
+## Usage
+
+```python
+python manage.py runserver
+```
+
+## Testing
+
+```python
+python manage.py test
+```
