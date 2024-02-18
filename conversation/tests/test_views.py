@@ -1,3 +1,7 @@
+"""
+Test cases for the conversation app views.
+"""
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -6,7 +10,10 @@ from item.models import Category, Item
 
 
 class ConversationViewsTestCase(TestCase):
+    """Conversation views test case."""
+
     def setUp(self):
+        """Set up test data."""
         self.client = Client()
         self.user = User.objects.create_user(
             username="testuser", email="test@example.com", password="password"
@@ -25,6 +32,7 @@ class ConversationViewsTestCase(TestCase):
         )
 
     def test_new_conversation_view_POST(self):
+        """Test new conversation view with POST request."""
         data = {"content": "Test message"}
         response = self.client.post(
             reverse("conversation:new", kwargs={"item_pk": self.item.id}), data

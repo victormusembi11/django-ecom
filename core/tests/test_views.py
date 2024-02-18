@@ -1,3 +1,5 @@
+"""Test core views."""
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -6,7 +8,10 @@ from item.models import Category, Item
 
 
 class CoreViewsTestCase(TestCase):
+    """Test core views."""
+
     def setUp(self):
+        """Set up the test client and create a user, category, and items."""
         self.client = Client()
         self.user = User.objects.create_user(
             username="testuser", email="test@example.com", password="password"
@@ -30,6 +35,7 @@ class CoreViewsTestCase(TestCase):
         )
 
     def test_index_view(self):
+        """Test the index view."""
         response = self.client.get(reverse("core:index"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "core/index.html")
@@ -39,16 +45,19 @@ class CoreViewsTestCase(TestCase):
         self.assertEqual(len(response.context["categories"]), 1)
 
     def test_contact_view(self):
+        """Test the contact view."""
         response = self.client.get(reverse("core:contact"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "core/contact.html")
 
     def test_signup_view(self):
+        """Test the signup view."""
         response = self.client.get(reverse("core:signup"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "core/signup.html")
 
     def test_signup_post_view(self):
+        """Test the signup post view."""
         data = {
             "username": "markdoe",
             "email": "markdoe@example.com",

@@ -1,3 +1,5 @@
+"""Conversation models test module."""
+
 from django.contrib.auth.models import User
 from django.test import TestCase
 
@@ -6,7 +8,10 @@ from conversation.models import Conversation, ConversationMessage
 
 
 class ConversationModelsTestCase(TestCase):
+    """Conversation models test case."""
+
     def setUp(self):
+        """Set up test data."""
         self.user = User.objects.create_user(
             username="testuser", password="testpassword"
         )
@@ -20,24 +25,24 @@ class ConversationModelsTestCase(TestCase):
         )
 
     def test_conversation_creation(self):
+        """Test conversation creation."""
         conversation = Conversation.objects.create(item=self.item)
         self.assertTrue(isinstance(conversation, Conversation))
         self.assertEqual(conversation.item, self.item)
 
     def test_conversation_members(self):
+        """Test conversation members."""
         conversation = Conversation.objects.create(item=self.item)
         conversation.members.add(self.user)
-
         self.assertEqual(conversation.members.count(), 1)
         self.assertIn(self.user, conversation.members.all())
 
     def test_conversation_message_creation(self):
+        """Test conversation message creation."""
         conversation = Conversation.objects.create(item=self.item)
-
         message = ConversationMessage.objects.create(
             conversation=conversation, content="Test Message", created_by=self.user
         )
-
         self.assertTrue(isinstance(message, ConversationMessage))
         self.assertEqual(message.conversation, conversation)
         self.assertEqual(message.content, "Test Message")
