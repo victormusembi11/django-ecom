@@ -145,6 +145,15 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+# WhiteNoise configuration
+# http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whiteenoise.storage.CompressedManifestStaticFilesStorage",
+    }
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
